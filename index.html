@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JMadhavPai | Tech Portfolio</title>
+  <style>
+    :root {
+      --bg: #06070f;
+      --bg2: #030c26;
+      --panel: #101a2d;
+      --text: #f3f7ff;
+      --muted: #7f8db8;
+      --accent: #070a0a;
+      --accent2: #81f7c5;
+      --font: 'IBM Plex Sans', 'Inter', 'Segoe UI', sans-serif;
+      --radius: 18px;
+      --border: rgba(36, 228, 255, .2);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 20% 15%, rgba(36, 228, 255, 0.14), transparent 28%),
+        radial-gradient(circle at 80% 80%, rgba(133, 247, 197, 0.12), transparent 38%),
+        linear-gradient(180deg, #080b14 0%, var(--bg2) 100%);
+      color: var(--text);
+      font-family: var(--font);
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      overflow-x: hidden;
+    }
+
+    .matrix {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image: repeating-linear-gradient(0deg, rgba(4, 37, 70, .11) 0 1px, transparent 1px 16px),
+                        repeating-linear-gradient(90deg, rgba(4, 37, 70, .11) 0 1px, transparent 1px 16px);
+      z-index: 0;
+      mix-blend-mode: overlay;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      width: min(960px, 100%);
+    }
+
+    .card {
+      background: linear-gradient(145deg, rgba(20, 29, 50, 0.96), rgba(14, 19, 34, 0.96));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 22px 48px rgba(1, 1, 6, 0.55);
+      padding: 34px;
+      overflow: hidden;
+      backdrop-filter: blur(8px);
+      display: grid;
+      gap: 18px;
+      animation: dataPulse 14s ease-in-out infinite;
+    }
+
+    @keyframes dataPulse {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px) scale(1.003); }
+    }
+
+    .card:before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      background: linear-gradient(90deg, rgba(36, 228, 255, 0.35), rgba(147, 112, 255, 0.24), rgba(36, 228, 255, 0.35));
+      filter: blur(10px);
+      z-index: -1;
+    }
+
+    .top-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .avatar {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #00dbf5, #34ff9b);
+      border: 3px solid rgba(255, 255, 255, 0.22);
+      box-shadow: 0 12px 22px rgba(21, 40, 67, 0.45);
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      color: #071426;
+      font-size: 1.9rem;
+      letter-spacing: 0.1em;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(1.9rem, 2.8vw, 2.5rem);
+      color: #e3ecff;
+      letter-spacing: 0.04em;
+    }
+
+    .subtitle {
+      color: var(--accent);
+      margin-top: 4px;
+      font-size: 0.96rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
+
+    .blink {
+      color: var(--accent2);
+      font-family: 'Courier New', monospace;
+      letter-spacing: 0.04em;
+      animation: blinkText .9s steps(2, start) infinite;
+    }
+
+    @keyframes blinkText {
+      0%, 45% { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+
+    .info {
+      display: grid;
+      gap: 10px;
+      margin-top: 6px;
+    }
+
+    .info-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      padding: 10px 14px;
+      border-radius: 12px;
+      background: rgba(9, 15, 27, 0.45);
+      border: 1px dashed rgba(115, 198, 255, 0.22);
+    }
+
+    .info-label { color: var(--accent2); font-family: 'Courier New', monospace; font-size: 0.91rem; }
+    .info-value { color: #dff2ff; font-family: 'Courier New', monospace; font-weight: 700; }
+
+    .college {
+      color: var(--muted);
+      border-top: 1px solid rgba(88, 161, 255, 0.18);
+      padding-top: 12px;
+      font-size: 0.95rem;
+      text-align: center;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .btn {
+      font-family: 'JetBrains Mono', monospace;
+      border: 1px solid rgba(130, 220, 255, 0.6);
+      border-radius: 8px;
+      padding: 0.7rem 1.2rem;
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: #ddf3ff;
+      background: rgba(10, 18, 32, 0.65);
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 14px rgba(36, 228, 255, 0.4);
+      filter: drop-shadow(0 0 14px rgba(36, 228, 255, 0.45));
+    }
+
+    .btn.primary { border-color: #1edcff; }
+    .btn.secondary { border-color: #86ffdd; }
+
+    @media (max-width: 620px) {
+      .card { padding: 24px; }
+      .page { padding: 16px; }
+      .actions { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+  <div class="matrix"></div>
+  <main class="page">
+    <article class="card">
+      <section class="top-row">
+        <div class="avatar">JM</div>
+        <div>
+          <h1>JMadhav Pai <!--<span class="blink">█</span>--></h1>
+          <div class="subtitle">Computer Science • Portfolio</div>
+        </div>
+      </section>
+
+      <section class="info">
+        <div class="info-row"><span class="info-label">USN</span><span class="info-value">1BM23CB024</span></div>
+        <div class="info-row"><span class="info-label">College</span><span class="info-value">BMS College of Engineering</span></div>
+      </section>
+
+      <!--<div class="actions">
+        <button class="btn primary">View Projects</button>
+        <button class="btn secondary">Contact</button>
+      </div>
+
+      <p class="college">Data structures, algorithmic design, systems and web development in a dark, futuristic theme.</p> -->
+    </article>
+  </main>
+</body>
+</html>
